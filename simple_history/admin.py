@@ -61,7 +61,7 @@ class SimpleHistoryAdmin(admin.ModelAdmin):
             except action_list.model.DoesNotExist:
                 raise http.Http404
 
-        if not self.has_change_permission(request, obj):
+        if not self.has_view_permission(request, obj):
             raise PermissionDenied
 
         # Set attribute on each action_list entry from admin methods
@@ -131,7 +131,7 @@ class SimpleHistoryAdmin(admin.ModelAdmin):
         ).instance
         obj._state.adding = False
 
-        if not self.has_change_permission(request, obj) and SIMPLE_HISTORY_EDIT:
+        if not self.has_change_permission(request, obj):
             raise PermissionDenied
 
         if SIMPLE_HISTORY_EDIT:
