@@ -131,7 +131,7 @@ class SimpleHistoryAdmin(admin.ModelAdmin):
         ).instance
         obj._state.adding = False
 
-        if not self.has_change_permission(request, obj):
+        if not self.has_change_permission(request, obj) and SIMPLE_HISTORY_EDIT:
             raise PermissionDenied
 
         if SIMPLE_HISTORY_EDIT:
